@@ -7,34 +7,25 @@
         <div class="flex items-center py-4 md:py-8 flex-wrap">
             <button type="button"
                 class="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">
-                All Movie
+                All genres
             </button>
         </div>
 
         <div class="flex items-center py-4 md:py-8 flex-wrap">
-            <a href="{{ route('movie.create') }}"
+            <a href="{{ route('genre.create') }}"
                 class="text-white border border-blue-600 bg-blue-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">
-                Create Movie
+                Create Genre
             </a>
         </div>
     </div>
 
-    <!-- Movie List Section -->
+    <!-- Genre List Section -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-20">
-        @forelse ($movies as $movie)
+        @forelse ($genres as $genre)
         <div class="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
-            <a href="#">
-                <img class="w-full h-64 object-cover" src="{{ $movie->poster }}" alt="{{ $movie->title }}">
-            </a>
             <div class="p-4">
-                <div class="flex justify-between mb-3">
-                    <span class="bg-gray-200 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">{{ $movie->year }}</span>
-                    <span class="bg-{{ $movie->available ? 'green' : 'red' }}-200 text-{{ $movie->available ? 'green' : 'red' }}-800 text-xs font-medium px-3 py-1 rounded-full">
-                        {{ $movie->available ? 'Available' : 'Unavailable' }}
-                    </span>
-                </div>
-                <h5 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ $movie->title }}</h5>
-                <p class="text-sm text-gray-700 dark:text-gray-400 mb-4">{{ Str::limit($movie->synopsis, 120) }}</p>
+                <h5 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ $genre->name }}</h5>
+                <p class="text-sm text-gray-700 dark:text-gray-400 mb-4">{{ Str::limit($genre->description, 120) }}</p>
                 <a href="#"
                     class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
                     View Details
@@ -43,10 +34,10 @@
         </div>
         @empty
         <div class="col-span-full text-center py-16">
-            <p class="text-gray-500 text-lg dark:text-gray-400">No movies found. Add some to get started!</p>
-            <a href="{{ route('movies.create') }}"
+            <p class="text-gray-500 text-lg dark:text-gray-400">No genres found. Add some to get started!</p>
+            <a href="{{ route('genre.create') }}"
                 class="mt-4 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
-                Add a Movie
+                Add a Genre
             </a>
         </div>
         @endforelse
