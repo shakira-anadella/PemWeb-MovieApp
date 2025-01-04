@@ -26,10 +26,21 @@
             <div class="p-4">
                 <h5 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ $genre->name }}</h5>
                 <p class="text-sm text-gray-700 dark:text-gray-400 mb-4">{{ Str::limit($genre->description, 120) }}</p>
-                <a href="#"
-                    class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
-                    View Details
+            </div>
+            <div class="p-4 flex justify-end space-x-2">
+                <a href="{{ route('genre.edit', $genre->id) }}"
+                    class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2">
+                    Edit
                 </a>
+                <form action="{{ route('genre.destroy', $genre->id) }}" method="POST" class="inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                        class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2"
+                        onclick="return confirm('Are you sure you want to delete this genre?');">
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
         @empty
